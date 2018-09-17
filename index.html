@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html>
 <head>          
-    <title>PWA ToDo</title>
+    <title>PWA</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="./manifest.json">
@@ -9,30 +9,35 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
-<body>
-
-
-
+<body onload="init()">
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">PWA ToDo</span>
+            <span class="mdl-layout-title">PWA</span>
         </div>
     </header>
     <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">PWA ToDo</span>
+        <span class="mdl-layout-title">PWA</span>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" data-action="newItem">New Item</a>
             <a class="mdl-navigation__link" data-action="checkAll">Check All</a>
             <a class="mdl-navigation__link" data-action="uncheckAll">Uncheck All</a>
             <a class="mdl-navigation__link" data-action="clearAll">Clear All</a>
+            <a class="mdl-navigation__link" data-action="openEnvironment">Open Draw Environment</a>
         </nav>
     </div>
     <main class="mdl-layout__content">
 
         <div class="page-content">
             <ul class="todo-list" ></ul>
+            <div id="sketchpadapp">
+                <div class="rightside">
+                    <canvas id="sketchpad" height="200" width="300">
+                    </canvas>
+                </div>
+            </div>
+            <input type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);">
         </div>
 
 
@@ -66,6 +71,7 @@
 </dialog>
 
 
+
 <dialog class="mdl-dialog" id="camera-dialog">
     <div class="mdl-dialog__content">
         <video id="camera-tag" width="230" height="200" autoplay ></video>
@@ -88,5 +94,6 @@
 
 <script async src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script async src="./app.bundle.js"  ></script>
+<script async src="./js/draw.js"  ></script>
 </body>
 </html>

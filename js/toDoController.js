@@ -25,6 +25,8 @@ export const Controller = {
                     case 'checkAll': this.Menu.checkAll(); break;
                     case 'uncheckAll': this.Menu.uncheckAll(); break;
                     case 'clearAll': this.Menu.clearAll(); break;
+                    case 'openEnvironment': this.Menu.openEnvironment(); break;
+
                 }
             }
         })
@@ -112,6 +114,21 @@ export const Controller = {
             changeSource(){
                 Camera.changeSource();
             }
+        },
+        draw: {
+            modal: document.querySelector('#draw-dialog'),
+            open(){ 
+                console.log('erro');
+                var dialog = this.modal;
+                dialog.querySelector('.close').addEventListener('click', this.close);
+                dialog.showModal();
+            },
+            close(){
+                var that = Controller.Modal.draw;
+                var dialog = that.modal;
+                dialog.querySelector('.close').removeEventListener('click', that.close);
+                dialog.hasAttribute('open') && dialog.close();
+            }
         }
     },
     Menu: {
@@ -133,6 +150,10 @@ export const Controller = {
             DB.clearAll().then(itemsList => {
                 Template.toDoList(itemsList);
             })
+            this.closeMenu();
+        },
+        openEnvironment(){
+            Controller.Modal.draw.open();
             this.closeMenu();
         },
         closeMenu(){
